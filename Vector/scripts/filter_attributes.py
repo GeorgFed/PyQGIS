@@ -1,17 +1,5 @@
-lyrPts = QgsVectorLayer("D:/hse/GIS/qgis_vector/ms/MSCities_Geo_Pts.shp", "MSCities_Geo_Pts", "ogr")
-lyrPoly = QgsVectorLayer("D:/hse/GIS/qgis_vector/ms/GIS_CensusTract_poly.shp", "GIS_CensusTract_poly", "ogr")
-QgsProject.instance().addMapLayers([lyrPoly,lyrPts])
-ftsPoly = lyrPoly.getFeatures()
-for feat in ftsPoly:
-    geomPoly = feat.geometry()
-    bbox = geomPoly.boundingBox()
-    req = QgsFeatureRequest()
-    filterRect = req.setFilterRect(bbox)
-    featsPnt = lyrPts.getFeatures(filterRect)
-    for featPnt in featsPnt:
-        if featPnt.geometry().within(geomPoly):
-            print(featPnt.id())
-            lyrPts.select(featPnt.id())
-
-iface.setActiveLayer(lyrPoly)
-iface.zoomToActiveLayer() 
+lyrPts = QgsVectorLayer("D:/hse/GIS/project_qgis_repository/PyQGIS/Vector/scripts/nyc/NYC_MUSEUMS_GEO.shp", "Museums", "ogr")
+QgsProject.instance().addMapLayers([lyrPts])
+selection = lyrPts.getFeatures(QgsFeatureRequest().setFilterExpression(u'"ZIP" = 10002'))
+lyrPts.selectByIds([s.id() for s in selection])
+iface.mapCanvas().zoomToSelected()
