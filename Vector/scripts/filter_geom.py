@@ -1,9 +1,9 @@
 # Слой с точками
-lyrPts = QgsVectorLayer("D:/hse/GIS/qgis_vector/ms/MSCities_Geo_Pts.shp", "MSCities_Geo_Pts", "ogr")
+lyrPts = QgsVectorLayer("D:/hse/GIS/project_qgis_repository/PyQGIS/Vector/scripts/ms/MSCities_Geo_Pts.shp", "MSCities_Geo_Pts", "ogr")
 # Слой с полигонами
-lyrPoly = QgsVectorLayer("D:/hse/GIS/qgis_vector/ms/GIS_CensusTract_poly.shp", "GIS_CensusTract_poly", "ogr")
+lyrPoly = QgsVectorLayer("D:/hse/GIS/project_qgis_repository/PyQGIS/Vector/scripts/ms/GIS_CensusTract_poly.shp", "GIS_CensusTract_poly", "ogr")
 # Отображаем два слоя
-QgsProject.instance().addMapLayers([lyrPoly,lyrPts])
+QgsProject.instance().addMapLayers([lyrPts,lyrPoly])
 # Получаем объекты слоя с полигонами
 ftsPoly = lyrPoly.getFeatures()
 # Проходимся по всем полигонам
